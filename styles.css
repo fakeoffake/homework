@@ -1,0 +1,151 @@
+*，*：：after,*::before{
+    box-sizing: border-box;
+}
+:root{
+    --cs: 100px
+    --ms: calc(var(--cs))
+}
+
+    body{
+    margin: 0;
+    }
+
+.board{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.box{
+    width: var(--cs);
+    height: var(--cs);
+    border: 1px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.box:first-child,
+.box:nth-child(2),
+.box:nth-child(3){
+    border-top: none;
+}
+
+.box:nth-child(3n+1){
+    border-left: none;
+}
+
+.box:nth-child(3n+3){
+    border-right: none;
+}
+
+.box:last-child,
+.box:nth-child(7)
+.box:nth-child(8){
+    border-bottom: none;
+}
+
+.box.x,
+.box.O{
+    cursor: not-allowed;
+}
+.box::before,
+.box.x::after,
+.box.O::before{
+    background-color: blue;
+}
+
+.board.x .box:not(.x):not(.O):hover::before,
+.board.x .box:not(.x):not(.O):hover::after,
+.box.O 
+.box:not(.x):not(.O):hover::before{
+background-color: lightblue;
+}
+
+.box.x::before,
+.box.x::after,
+.board.x .box:not(.x):not(.O):hover::before
+{
+    content: '';
+    position: absolute;
+    width: calc(var(--ms)*.15);
+    height: var(--ms);
+}
+
+.box.x::before,
+.board.x .box:not(.x):not(.O):hover::before{
+    transition: rotate(45deg);
+}
+
+.box.x::after,
+.board.x .box:not(.x):not(.O):hover::after{
+    transform: rotate(-45deg);
+}
+
+.box.O::before,
+.box.O::after,
+.board.O::before,
+.box:not(.x):not(.O):hover::before{
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.box.O::before,
+.board.O::before,
+.box:not(.x):not(.O):hover::before{
+    width: var(--ms);
+    height: var(--ms);
+}
+
+.box.O::after,
+.board.O
+.box:not(.x):not(.O):hover::after
+{
+    width: calc(var(--ms)* .7);
+    height: calc(var(--ms)* .7);
+    background-color: white;
+}
+
+.winM
+{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+}
+
+.winM button
+{
+    font-size: 3rem;
+    background-color: white;
+    border: 1px solid black;
+    padding: .25em .5em;
+    cursor: pointer;
+}
+
+.winM button:hover
+{
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+.winM.show{
+    display: flex;
+}
