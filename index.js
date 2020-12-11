@@ -1,3 +1,5 @@
+console.log('testing')
+
 const xc = 'x'
 const oc ='O'
 const Winc =[
@@ -12,14 +14,14 @@ const Winc =[
 ]
 const boxE = document.querySelectorAll('[data-box]')
 const board = document.getElementById('board')
-const winME = document.getElementById('WinningM')
-const reB = document.getElementById('reB')
-const winMTE = document.getElementById('[data-winM-text]')
+const WinM = document.getElementById('winningM')
+const ReB = document.getElementById('ReB')
+const winMTE = document.getElementById('data-winM-text')
 let OTurn
 
 startGame()
 
-reB.addEventListener('click', startGame)
+ReB.addEventListener('click', startGame)
 
 function startGame(){
     OTurn = false
@@ -30,7 +32,7 @@ function startGame(){
         box.addEventListener('click',handleClick,{once: true })
     })
     sBoardHoverC()
-    winME.classList.remove('show')
+    WinM.classList.remove('show')
 }
 
 function handleClick(e){
@@ -53,7 +55,7 @@ function endGame(draw) {
     }else{
         winMTE.innerText = `${OTurn ? "O's" : "X's"} Wins!`
     }
-    winME.classList.add('show')
+    WinM.classList.add('show')
 }
 
 function isDraw(){
